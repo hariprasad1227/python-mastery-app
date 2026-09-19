@@ -1,0 +1,32 @@
+# Render Infrastructure-as-Code Blueprint for Python Mastery
+services:
+  # FastAPI Progression Engine & Sandbox Backend
+  - type: web
+    name: python-mastery-backend
+    env: python
+    region: oregon
+    plan: standard
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: python -m uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT --workers 2
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: python-mastery-db
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 10080
+      - key: CORS_ORIGINS
+        value: '["https://python-mastery.vercel.app"]'
+
+databases:
+  # Managed PostgreSQL Database
+  - name: python-mastery-db
+    region: oregon
+    plan: standard
+    databaseName: mastery_db
+    user: mastery_admin

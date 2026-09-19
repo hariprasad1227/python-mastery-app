@@ -1,0 +1,488 @@
+[
+  {
+    "id": "chal-1",
+    "order_index": 1,
+    "level_number": 1,
+    "slug": "challenge-greet",
+    "title": "Personalized Greeting",
+    "difficulty": "easy",
+    "instructions": "Write `greet(name: str) -> str` returning 'Hello, <name>!'",
+    "starter_code": "def greet(name: str) -> str:\n    pass\n",
+    "solution_code": "def greet(name: str) -> str:\n    return f'Hello, {name}!'\n",
+    "entry_function_name": "greet",
+    "test_cases": [
+      {
+        "input": [
+          "Alice"
+        ],
+        "expected": "Hello, Alice!",
+        "description": "Greeting Alice",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "Bob"
+        ],
+        "expected": "Hello, Bob!",
+        "description": "Greeting Bob",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "Pythonista"
+        ],
+        "expected": "Hello, Pythonista!",
+        "description": "Greeting Pythonista",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use f-string.",
+      "Remember return keyword."
+    ],
+    "xp_reward": 50,
+    "time_limit_seconds": 302,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-2",
+    "order_index": 2,
+    "level_number": 1,
+    "slug": "challenge-even-or-odd",
+    "title": "Even or Odd Parity",
+    "difficulty": "easy",
+    "instructions": "Write `check_parity(n: int) -> str` returning 'Even' or 'Odd'.",
+    "starter_code": "def check_parity(n: int) -> str:\n    pass\n",
+    "solution_code": "def check_parity(n: int) -> str:\n    return 'Even' if n % 2 == 0 else 'Odd'\n",
+    "entry_function_name": "check_parity",
+    "test_cases": [
+      {
+        "input": [
+          4
+        ],
+        "expected": "Even",
+        "description": "4 is Even",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          7
+        ],
+        "expected": "Odd",
+        "description": "7 is Odd",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": "Even",
+        "description": "0 is Even",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use % operator.",
+      "Check n % 2 == 0."
+    ],
+    "xp_reward": 60,
+    "time_limit_seconds": 304,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-3",
+    "order_index": 3,
+    "level_number": 1,
+    "slug": "challenge-sum-multiples",
+    "title": "Sum of Multiples",
+    "difficulty": "easy",
+    "instructions": "Write `sum_multiples(limit: int, factor: int) -> int` summing integers <= limit divisible by factor.",
+    "starter_code": "def sum_multiples(limit: int, factor: int) -> int:\n    pass\n",
+    "solution_code": "def sum_multiples(limit: int, factor: int) -> int:\n    return sum(i for i in range(factor, limit + 1, factor))\n",
+    "entry_function_name": "sum_multiples",
+    "test_cases": [
+      {
+        "input": [
+          10,
+          3
+        ],
+        "expected": 18,
+        "description": "Multiples of 3 <= 10: 3+6+9 = 18",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          20,
+          5
+        ],
+        "expected": 50,
+        "description": "Multiples of 5 <= 20: 5+10+15+20 = 50",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          5,
+          7
+        ],
+        "expected": 0,
+        "description": "No multiples up to 5",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use range with step = factor.",
+      "Sum the values."
+    ],
+    "xp_reward": 75,
+    "time_limit_seconds": 306,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-4",
+    "order_index": 4,
+    "level_number": 1,
+    "slug": "challenge-palindrome",
+    "title": "Palindrome Checker",
+    "difficulty": "easy",
+    "instructions": "Write `is_palindrome(text: str) -> bool` returning True if text is a palindrome (ignoring case & non-alphanumerics).",
+    "starter_code": "def is_palindrome(text: str) -> bool:\n    pass\n",
+    "solution_code": "def is_palindrome(text: str) -> bool:\n    c = ''.join(ch.lower() for ch in text if ch.isalnum())\n    return c == c[::-1]\n",
+    "entry_function_name": "is_palindrome",
+    "test_cases": [
+      {
+        "input": [
+          "racecar"
+        ],
+        "expected": true,
+        "description": "racecar",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "hello"
+        ],
+        "expected": false,
+        "description": "hello",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "A man, a plan, a canal: Panama"
+        ],
+        "expected": true,
+        "description": "Panama sentence",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Clean string with isalnum().",
+      "Compare with slice [::-1]."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 308,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-5",
+    "order_index": 5,
+    "level_number": 1,
+    "slug": "challenge-word-frequency",
+    "title": "Word Frequency Counter",
+    "difficulty": "easy",
+    "instructions": "Write `count_frequencies(words: list[str]) -> dict[str, int]` counting frequency of each word.",
+    "starter_code": "def count_frequencies(words: list[str]) -> dict[str, int]:\n    pass\n",
+    "solution_code": "def count_frequencies(words: list[str]) -> dict[str, int]:\n    f = {}\n    for w in words:\n        f[w] = f.get(w, 0) + 1\n    return f\n",
+    "entry_function_name": "count_frequencies",
+    "test_cases": [
+      {
+        "input": [
+          [
+            "apple",
+            "banana",
+            "apple"
+          ]
+        ],
+        "expected": {
+          "apple": 2,
+          "banana": 1
+        },
+        "description": "Word frequencies",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "cat",
+            "dog",
+            "cat",
+            "bird"
+          ]
+        ],
+        "expected": {
+          "cat": 2,
+          "dog": 1,
+          "bird": 1
+        },
+        "description": "Animals list",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": {},
+        "description": "Empty list",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Initialize dict.",
+      "Use dict.get(w, 0) + 1."
+    ],
+    "xp_reward": 85,
+    "time_limit_seconds": 310,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-6",
+    "order_index": 6,
+    "level_number": 1,
+    "slug": "challenge-title-case",
+    "title": "Sentence Title Casing",
+    "difficulty": "easy",
+    "instructions": "Write `to_title_case(sentence: str) -> str` capitalizing the first letter of each word separated by spaces.",
+    "starter_code": "def to_title_case(sentence: str) -> str:\n    pass\n",
+    "solution_code": "def to_title_case(sentence: str) -> str:\n    return ' '.join(word.capitalize() for word in sentence.split(' '))\n",
+    "entry_function_name": "to_title_case",
+    "test_cases": [
+      {
+        "input": [
+          "hello world"
+        ],
+        "expected": "Hello World",
+        "description": "hello world",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "python programming is fun"
+        ],
+        "expected": "Python Programming Is Fun",
+        "description": "Multiple words",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "quick brown fox"
+        ],
+        "expected": "Quick Brown Fox",
+        "description": "Fox test",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use sentence.split(' ').",
+      "Capitalize each word with .capitalize()."
+    ],
+    "xp_reward": 60,
+    "time_limit_seconds": 312,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-7",
+    "order_index": 7,
+    "level_number": 1,
+    "slug": "challenge-factorial",
+    "title": "Factorial Calculator",
+    "difficulty": "easy",
+    "instructions": "Write `factorial(n: int) -> int` returning the factorial of n (where 0! = 1).",
+    "starter_code": "def factorial(n: int) -> int:\n    pass\n",
+    "solution_code": "def factorial(n: int) -> int:\n    res = 1\n    for i in range(2, n + 1):\n        res *= i\n    return res\n",
+    "entry_function_name": "factorial",
+    "test_cases": [
+      {
+        "input": [
+          5
+        ],
+        "expected": 120,
+        "description": "5! = 120",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": 1,
+        "description": "0! = 1",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          6
+        ],
+        "expected": 720,
+        "description": "6! = 720",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Start with res = 1.",
+      "Loop from 2 to n."
+    ],
+    "xp_reward": 65,
+    "time_limit_seconds": 314,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-8",
+    "order_index": 8,
+    "level_number": 1,
+    "slug": "challenge-reverse-list",
+    "title": "Reverse a List",
+    "difficulty": "easy",
+    "instructions": "Write `reverse_list(items: list) -> list` returning a new list with items in reversed order without using .reverse().",
+    "starter_code": "def reverse_list(items: list) -> list:\n    pass\n",
+    "solution_code": "def reverse_list(items: list) -> list:\n    return items[::-1]\n",
+    "entry_function_name": "reverse_list",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "expected": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "description": "1 to 4",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "a",
+            "b",
+            "c"
+          ]
+        ],
+        "expected": [
+          "c",
+          "b",
+          "a"
+        ],
+        "description": "Strings",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": [],
+        "description": "Empty list",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use list slicing [::-1]."
+    ],
+    "xp_reward": 60,
+    "time_limit_seconds": 316,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-9",
+    "order_index": 9,
+    "level_number": 1,
+    "slug": "challenge-leap-year",
+    "title": "Leap Year Validator",
+    "difficulty": "easy",
+    "instructions": "Write `is_leap_year(year: int) -> bool` returning True if year is a leap year (divisible by 4, except century years unless divisible by 400).",
+    "starter_code": "def is_leap_year(year: int) -> bool:\n    pass\n",
+    "solution_code": "def is_leap_year(year: int) -> bool:\n    return (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)\n",
+    "entry_function_name": "is_leap_year",
+    "test_cases": [
+      {
+        "input": [
+          2024
+        ],
+        "expected": true,
+        "description": "2024 is leap",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          1900
+        ],
+        "expected": false,
+        "description": "1900 is century non-leap",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          2000
+        ],
+        "expected": true,
+        "description": "2000 is 400-year leap",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Check year % 400 == 0 first.",
+      "Check year % 4 == 0 and year % 100 != 0."
+    ],
+    "xp_reward": 70,
+    "time_limit_seconds": 318,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-10",
+    "order_index": 10,
+    "level_number": 1,
+    "slug": "challenge-celsius-to-fahrenheit",
+    "title": "Temperature Converter",
+    "difficulty": "easy",
+    "instructions": "Write `celsius_to_fahrenheit(c: float) -> float` converting Celsius to Fahrenheit (F = C * 9/5 + 32) rounded to 1 decimal place.",
+    "starter_code": "def celsius_to_fahrenheit(c: float) -> float:\n    pass\n",
+    "solution_code": "def celsius_to_fahrenheit(c: float) -> float:\n    return round(c * 9.0 / 5.0 + 32.0, 1)\n",
+    "entry_function_name": "celsius_to_fahrenheit",
+    "test_cases": [
+      {
+        "input": [
+          0.0
+        ],
+        "expected": 32.0,
+        "description": "0C = 32F",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          100.0
+        ],
+        "expected": 212.0,
+        "description": "100C = 212F",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          37.0
+        ],
+        "expected": 98.6,
+        "description": "37C body temp",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use formula (c * 9/5) + 32.",
+      "Use round(..., 1)."
+    ],
+    "xp_reward": 60,
+    "time_limit_seconds": 320,
+    "sandbox_timeout_seconds": 3.0
+  }
+]

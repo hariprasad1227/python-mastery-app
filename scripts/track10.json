@@ -1,0 +1,701 @@
+[
+  {
+    "id": "chal-91",
+    "order_index": 91,
+    "level_number": 10,
+    "slug": "challenge-trie-search",
+    "title": "Prefix Tree (Trie) Search",
+    "difficulty": "hard",
+    "instructions": "Write `test_trie_search(words: list[str], prefix: str) -> bool` creating a Trie, inserting words, and returning True if prefix exists.",
+    "starter_code": "def test_trie_search(words: list[str], prefix: str) -> bool:\n    pass\n",
+    "solution_code": "def test_trie_search(words: list[str], prefix: str) -> bool:\n    root = {}\n    for word in words:\n        cur = root\n        for ch in word:\n            cur = cur.setdefault(ch, {})\n    cur = root\n    for ch in prefix:\n        if ch not in cur:\n            return False\n        cur = cur[ch]\n    return True\n",
+    "entry_function_name": "test_trie_search",
+    "test_cases": [
+      {
+        "input": [
+          [
+            "apple",
+            "app",
+            "application"
+          ],
+          "app"
+        ],
+        "expected": true,
+        "description": "app is prefix",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "apple",
+            "banana"
+          ],
+          "cat"
+        ],
+        "expected": false,
+        "description": "cat is not prefix",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "mastery",
+            "python"
+          ],
+          "mas"
+        ],
+        "expected": true,
+        "description": "mas prefix",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Build nested dict tree.",
+      "Follow prefix characters."
+    ],
+    "xp_reward": 120,
+    "time_limit_seconds": 482,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-92",
+    "order_index": 92,
+    "level_number": 10,
+    "slug": "challenge-lru-cache",
+    "title": "Simulate LRU Cache",
+    "difficulty": "hard",
+    "instructions": "Write `simulate_lru_cache(capacity: int, operations: list[dict]) -> list` supporting {'op': 'put', 'k': k, 'v': v} and {'op': 'get', 'k': k} (returning value or -1).",
+    "starter_code": "def simulate_lru_cache(capacity: int, operations: list[dict]) -> list:\n    pass\n",
+    "solution_code": "def simulate_lru_cache(capacity: int, operations: list[dict]) -> list:\n    from collections import OrderedDict\n    cache = OrderedDict()\n    out = []\n    for op in operations:\n        if op['op'] == 'put':\n            k, v = op['k'], op['v']\n            if k in cache:\n                cache.move_to_end(k)\n            cache[k] = v\n            if len(cache) > capacity:\n                cache.popitem(last=False)\n        elif op['op'] == 'get':\n            k = op['k']\n            if k in cache:\n                cache.move_to_end(k)\n                out.append(cache[k])\n            else:\n                out.append(-1)\n    return out\n",
+    "entry_function_name": "simulate_lru_cache",
+    "test_cases": [
+      {
+        "input": [
+          2,
+          [
+            {
+              "op": "put",
+              "k": 1,
+              "v": 10
+            },
+            {
+              "op": "put",
+              "k": 2,
+              "v": 20
+            },
+            {
+              "op": "get",
+              "k": 1
+            },
+            {
+              "op": "put",
+              "k": 3,
+              "v": 30
+            },
+            {
+              "op": "get",
+              "k": 2
+            }
+          ]
+        ],
+        "expected": [
+          10,
+          -1
+        ],
+        "description": "Key 2 evicted",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          1,
+          [
+            {
+              "op": "put",
+              "k": 1,
+              "v": 5
+            },
+            {
+              "op": "get",
+              "k": 1
+            },
+            {
+              "op": "get",
+              "k": 2
+            }
+          ]
+        ],
+        "expected": [
+          5,
+          -1
+        ],
+        "description": "Capacity 1",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          2,
+          [
+            {
+              "op": "get",
+              "k": 9
+            }
+          ]
+        ],
+        "expected": [
+          -1
+        ],
+        "description": "Missing key",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use collections.OrderedDict.",
+      "Use move_to_end() and popitem(last=False)."
+    ],
+    "xp_reward": 130,
+    "time_limit_seconds": 484,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-93",
+    "order_index": 93,
+    "level_number": 10,
+    "slug": "challenge-rate-limiter-logic",
+    "title": "Sliding Window Rate Limiter",
+    "difficulty": "hard",
+    "instructions": "Write `sliding_window_rate_limiter(timestamps: list[int], now: int, max_req: int, window: int) -> bool` returning True if count of timestamps in [now - window, now] < max_req.",
+    "starter_code": "def sliding_window_rate_limiter(timestamps: list[int], now: int, max_req: int, window: int) -> bool:\n    pass\n",
+    "solution_code": "def sliding_window_rate_limiter(timestamps: list[int], now: int, max_req: int, window: int) -> bool:\n    active = [t for t in timestamps if now - window <= t <= now]\n    return len(active) < max_req\n",
+    "entry_function_name": "sliding_window_rate_limiter",
+    "test_cases": [
+      {
+        "input": [
+          [
+            10,
+            20,
+            30
+          ],
+          40,
+          5,
+          30
+        ],
+        "expected": true,
+        "description": "3 requests in window < 5",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            10,
+            15,
+            20
+          ],
+          25,
+          3,
+          20
+        ],
+        "expected": false,
+        "description": "3 requests >= max 3",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            5
+          ],
+          100,
+          1,
+          10
+        ],
+        "expected": true,
+        "description": "Old request out of window",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Filter timestamps where t >= now - window.",
+      "Compare count < max_req."
+    ],
+    "xp_reward": 110,
+    "time_limit_seconds": 486,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-94",
+    "order_index": 94,
+    "level_number": 10,
+    "slug": "challenge-eval-rpn",
+    "title": "Evaluate Reverse Polish Notation",
+    "difficulty": "hard",
+    "instructions": "Write `eval_rpn(tokens: list[str]) -> int` evaluating RPN expression supporting '+', '-', '*', '/' (integer division truncating toward zero).",
+    "starter_code": "def eval_rpn(tokens: list[str]) -> int:\n    pass\n",
+    "solution_code": "def eval_rpn(tokens: list[str]) -> int:\n    stack = []\n    for t in tokens:\n        if t in '+-*/':\n            b = stack.pop()\n            a = stack.pop()\n            if t == '+': stack.append(a + b)\n            elif t == '-': stack.append(a - b)\n            elif t == '*': stack.append(a * b)\n            elif t == '/': stack.append(int(a / b))\n        else:\n            stack.append(int(t))\n    return stack[0]\n",
+    "entry_function_name": "eval_rpn",
+    "test_cases": [
+      {
+        "input": [
+          [
+            "2",
+            "1",
+            "+",
+            "3",
+            "*"
+          ]
+        ],
+        "expected": 9,
+        "description": "(2 + 1) * 3 = 9",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "4",
+            "13",
+            "5",
+            "/",
+            "+"
+          ]
+        ],
+        "expected": 6,
+        "description": "4 + (13 / 5) = 6",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "10",
+            "6",
+            "9",
+            "3",
+            "+",
+            "-11",
+            "*",
+            "/",
+            "*",
+            "17",
+            "+",
+            "5",
+            "+"
+          ]
+        ],
+        "expected": 22,
+        "description": "Complex RPN",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use a stack.",
+      "Pop b then a, apply operator, push result."
+    ],
+    "xp_reward": 125,
+    "time_limit_seconds": 488,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-95",
+    "order_index": 95,
+    "level_number": 10,
+    "slug": "challenge-traffic-light",
+    "title": "Traffic Light State Machine",
+    "difficulty": "easy",
+    "instructions": "Write `simulate_traffic_light(steps: int) -> str` cycling 'Green' -> 'Yellow' -> 'Red' -> 'Green' starting at 'Green' (0 steps = 'Green').",
+    "starter_code": "def simulate_traffic_light(steps: int) -> str:\n    pass\n",
+    "solution_code": "def simulate_traffic_light(steps: int) -> str:\n    states = ['Green', 'Yellow', 'Red']\n    return states[steps % 3]\n",
+    "entry_function_name": "simulate_traffic_light",
+    "test_cases": [
+      {
+        "input": [
+          0
+        ],
+        "expected": "Green",
+        "description": "0 steps",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          1
+        ],
+        "expected": "Yellow",
+        "description": "1 step",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          5
+        ],
+        "expected": "Red",
+        "description": "5 steps = Red",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "States array ['Green', 'Yellow', 'Red'].",
+      "Access steps % 3."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 490,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-96",
+    "order_index": 96,
+    "level_number": 10,
+    "slug": "challenge-bfs-shortest-path",
+    "title": "Graph Breadth-First Search",
+    "difficulty": "hard",
+    "instructions": "Write `bfs_shortest_path(graph: dict[str, list[str]], start: str, target: str) -> list[str]` returning shortest path of node labels from start to target, or [] if no path.",
+    "starter_code": "def bfs_shortest_path(graph: dict, start: str, target: str) -> list[str]:\n    pass\n",
+    "solution_code": "def bfs_shortest_path(graph: dict, start: str, target: str) -> list[str]:\n    from collections import deque\n    if start == target:\n        return [start]\n    queue = deque([[start]])\n    visited = {start}\n    while queue:\n        path = queue.popleft()\n        node = path[-1]\n        for neighbor in graph.get(node, []):\n            if neighbor not in visited:\n                visited.add(neighbor)\n                new_path = path + [neighbor]\n                if neighbor == target:\n                    return new_path\n                queue.append(new_path)\n    return []\n",
+    "entry_function_name": "bfs_shortest_path",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "A": [
+              "B",
+              "C"
+            ],
+            "B": [
+              "D"
+            ],
+            "C": [
+              "D"
+            ],
+            "D": []
+          },
+          "A",
+          "D"
+        ],
+        "expected": [
+          "A",
+          "B",
+          "D"
+        ],
+        "description": "A to D path",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          {
+            "A": [
+              "B"
+            ],
+            "B": [],
+            "C": []
+          },
+          "A",
+          "C"
+        ],
+        "expected": [],
+        "description": "No path",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          {
+            "X": [
+              "Y"
+            ],
+            "Y": [
+              "Z"
+            ],
+            "Z": []
+          },
+          "X",
+          "Z"
+        ],
+        "expected": [
+          "X",
+          "Y",
+          "Z"
+        ],
+        "description": "X-Y-Z path",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use a queue tracking paths.",
+      "Return first path reaching target."
+    ],
+    "xp_reward": 130,
+    "time_limit_seconds": 492,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-97",
+    "order_index": 97,
+    "level_number": 10,
+    "slug": "challenge-overlapping-intervals",
+    "title": "Overlapping Intervals Detector",
+    "difficulty": "medium",
+    "instructions": "Write `has_overlapping_intervals(intervals: list[list[int]]) -> bool` returning True if any intervals [start, end] overlap (exclusive of touching borders e.g. [1, 2] and [2, 3] do not overlap).",
+    "starter_code": "def has_overlapping_intervals(intervals: list[list[int]]) -> bool:\n    pass\n",
+    "solution_code": "def has_overlapping_intervals(intervals: list[list[int]]) -> bool:\n    sorted_intervals = sorted(intervals, key=lambda x: x[0])\n    for i in range(len(sorted_intervals) - 1):\n        if sorted_intervals[i][1] > sorted_intervals[i+1][0]:\n            return True\n    return False\n",
+    "entry_function_name": "has_overlapping_intervals",
+    "test_cases": [
+      {
+        "input": [
+          [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              5
+            ]
+          ]
+        ],
+        "expected": true,
+        "description": "Overlap 2 to 4",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": false,
+        "description": "Touching borders do not overlap",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            [
+              1,
+              10
+            ],
+            [
+              15,
+              20
+            ]
+          ]
+        ],
+        "expected": false,
+        "description": "Disjoint intervals",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Sort intervals by start.",
+      "Check if cur_end > next_start."
+    ],
+    "xp_reward": 105,
+    "time_limit_seconds": 494,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-98",
+    "order_index": 98,
+    "level_number": 10,
+    "slug": "challenge-priority-tasks",
+    "title": "Priority Task Scheduler",
+    "difficulty": "medium",
+    "instructions": "Write `schedule_priority_tasks(tasks: list[dict]) -> list[str]` where each task has {'name': str, 'priority': int} returning task names sorted by priority descending (ties broken by name).",
+    "starter_code": "def schedule_priority_tasks(tasks: list[dict]) -> list[str]:\n    pass\n",
+    "solution_code": "def schedule_priority_tasks(tasks: list[dict]) -> list[str]:\n    sorted_tasks = sorted(tasks, key=lambda t: (-t['priority'], t['name']))\n    return [t['name'] for t in sorted_tasks]\n",
+    "entry_function_name": "schedule_priority_tasks",
+    "test_cases": [
+      {
+        "input": [
+          [
+            {
+              "name": "Fix Bug",
+              "priority": 10
+            },
+            {
+              "name": "Write Docs",
+              "priority": 3
+            },
+            {
+              "name": "Deploy",
+              "priority": 10
+            }
+          ]
+        ],
+        "expected": [
+          "Deploy",
+          "Fix Bug",
+          "Write Docs"
+        ],
+        "description": "Priority 10 ties sorted alphabetically",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": [],
+        "description": "Empty tasks",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            {
+              "name": "A",
+              "priority": 1
+            },
+            {
+              "name": "B",
+              "priority": 2
+            }
+          ]
+        ],
+        "expected": [
+          "B",
+          "A"
+        ],
+        "description": "Priority 2 then 1",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Sort by (-t['priority'], t['name'])."
+    ],
+    "xp_reward": 105,
+    "time_limit_seconds": 496,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-99",
+    "order_index": 99,
+    "level_number": 10,
+    "slug": "challenge-event-bus",
+    "title": "In-Memory Event Dispatcher",
+    "difficulty": "medium",
+    "instructions": "Write `simulate_event_bus(events: list[dict]) -> list[str]` recording dispatched events: each event has {'type': str, 'payload': str}, returning ['<type>: <payload>', ...].",
+    "starter_code": "def simulate_event_bus(events: list[dict]) -> list[str]:\n    pass\n",
+    "solution_code": "def simulate_event_bus(events: list[dict]) -> list[str]:\n    return [f\"{e['type']}: {e['payload']}\" for e in events]\n",
+    "entry_function_name": "simulate_event_bus",
+    "test_cases": [
+      {
+        "input": [
+          [
+            {
+              "type": "LOGIN",
+              "payload": "user1"
+            },
+            {
+              "type": "CLICK",
+              "payload": "btn_submit"
+            }
+          ]
+        ],
+        "expected": [
+          "LOGIN: user1",
+          "CLICK: btn_submit"
+        ],
+        "description": "Two events",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": [],
+        "description": "No events",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            {
+              "type": "ERROR",
+              "payload": "timeout"
+            }
+          ]
+        ],
+        "expected": [
+          "ERROR: timeout"
+        ],
+        "description": "Error event",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Format each event as f\"{e['type']}: {e['payload']}\"."
+    ],
+    "xp_reward": 100,
+    "time_limit_seconds": 498,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-100",
+    "order_index": 100,
+    "level_number": 10,
+    "slug": "challenge-python-mastery-capstone",
+    "title": "Python Master Evaluator Capstone",
+    "difficulty": "hard",
+    "instructions": "Write `python_master_evaluator(commands: list[str]) -> dict[str, int]` executing simple statements 'x = <int>' and 'x += <int>' or 'x -= <int>', returning final variables sorted by name.",
+    "starter_code": "def python_master_evaluator(commands: list[str]) -> dict[str, int]:\n    pass\n",
+    "solution_code": "def python_master_evaluator(commands: list[str]) -> dict[str, int]:\n    memory = {}\n    for cmd in commands:\n        parts = cmd.split()\n        if len(parts) == 3:\n            var, op, val_str = parts\n            val = int(val_str)\n            if op == '=':\n                memory[var] = val\n            elif op == '+=':\n                memory[var] = memory.get(var, 0) + val\n            elif op == '-=':\n                memory[var] = memory.get(var, 0) - val\n    return {k: memory[k] for k in sorted(memory.keys())}\n",
+    "entry_function_name": "python_master_evaluator",
+    "test_cases": [
+      {
+        "input": [
+          [
+            "a = 10",
+            "b = 20",
+            "a += 5",
+            "b -= 3"
+          ]
+        ],
+        "expected": {
+          "a": 15,
+          "b": 17
+        },
+        "description": "a and b assignments & ops",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "x = 100",
+            "x += 50",
+            "x -= 25"
+          ]
+        ],
+        "expected": {
+          "x": 125
+        },
+        "description": "Single var",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "z = 0",
+            "y = 10"
+          ]
+        ],
+        "expected": {
+          "y": 10,
+          "z": 0
+        },
+        "description": "Sorted keys",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Parse commands line by line.",
+      "Update memory dictionary."
+    ],
+    "xp_reward": 250,
+    "time_limit_seconds": 500,
+    "sandbox_timeout_seconds": 3.0
+  }
+]

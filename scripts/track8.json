@@ -1,0 +1,485 @@
+[
+  {
+    "id": "chal-71",
+    "order_index": 71,
+    "level_number": 8,
+    "slug": "challenge-caesar-cipher",
+    "title": "Caesar Cipher Encryption",
+    "difficulty": "medium",
+    "instructions": "Write `caesar_cipher(text: str, shift: int) -> str` shifting ASCII letters by shift positions (preserving case, ignoring non-letters).",
+    "starter_code": "def caesar_cipher(text: str, shift: int) -> str:\n    pass\n",
+    "solution_code": "def caesar_cipher(text: str, shift: int) -> str:\n    res = []\n    for ch in text:\n        if 'a' <= ch <= 'z':\n            res.append(chr((ord(ch) - ord('a') + shift) % 26 + ord('a')))\n        elif 'A' <= ch <= 'Z':\n            res.append(chr((ord(ch) - ord('A') + shift) % 26 + ord('A')))\n        else:\n            res.append(ch)\n    return ''.join(res)\n",
+    "entry_function_name": "caesar_cipher",
+    "test_cases": [
+      {
+        "input": [
+          "abc",
+          3
+        ],
+        "expected": "def",
+        "description": "Shift 3",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "Hello, World!",
+          1
+        ],
+        "expected": "Ifmmp, Xpsme!",
+        "description": "Preserve punctuation",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "xyz",
+          2
+        ],
+        "expected": "zab",
+        "description": "Wrap around z",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use ord() and chr().",
+      "Modulo 26 for wrap-around."
+    ],
+    "xp_reward": 100,
+    "time_limit_seconds": 442,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-72",
+    "order_index": 72,
+    "level_number": 8,
+    "slug": "challenge-extract-hashtags",
+    "title": "Extract Hashtags from Text",
+    "difficulty": "easy",
+    "instructions": "Write `extract_hashtags(text: str) -> list[str]` extracting all unique lowercase hashtags in order of appearance.",
+    "starter_code": "def extract_hashtags(text: str) -> list[str]:\n    pass\n",
+    "solution_code": "def extract_hashtags(text: str) -> list[str]:\n    seen = set()\n    res = []\n    for word in text.split():\n        if word.startswith('#') and len(word) > 1:\n            cleaned = ''.join(c.lower() for c in word[1:] if c.isalnum())\n            if cleaned and cleaned not in seen:\n                seen.add(cleaned)\n                res.append(cleaned)\n    return res\n",
+    "entry_function_name": "extract_hashtags",
+    "test_cases": [
+      {
+        "input": [
+          "Learning #Python and #Coding in #python!"
+        ],
+        "expected": [
+          "python",
+          "coding"
+        ],
+        "description": "Duplicate lowercase",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "No tags here"
+        ],
+        "expected": [],
+        "description": "No hashtags",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "#AI #ML #DL"
+        ],
+        "expected": [
+          "ai",
+          "ml",
+          "dl"
+        ],
+        "description": "Multiple tags",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Split by whitespace.",
+      "Check word.startswith('#')."
+    ],
+    "xp_reward": 85,
+    "time_limit_seconds": 444,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-73",
+    "order_index": 73,
+    "level_number": 8,
+    "slug": "challenge-mask-credit-card",
+    "title": "Mask Credit Card Digits",
+    "difficulty": "easy",
+    "instructions": "Write `mask_credit_card(card: str) -> str` keeping first 4 and last 4 characters visible and replacing all middle characters with '*'. If length <= 8, return unchanged.",
+    "starter_code": "def mask_credit_card(card: str) -> str:\n    pass\n",
+    "solution_code": "def mask_credit_card(card: str) -> str:\n    if len(card) <= 8:\n        return card\n    return card[:4] + ('*' * (len(card) - 8)) + card[-4:]\n",
+    "entry_function_name": "mask_credit_card",
+    "test_cases": [
+      {
+        "input": [
+          "1234567812345678"
+        ],
+        "expected": "1234********5678",
+        "description": "16-digit card",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "12345678"
+        ],
+        "expected": "12345678",
+        "description": "Length <= 8 returns card",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "4111222233334444"
+        ],
+        "expected": "4111********4444",
+        "description": "Another 16-digit",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Slice card[:4] + ('*' * (len - 8)) + card[-4:]."
+    ],
+    "xp_reward": 85,
+    "time_limit_seconds": 446,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-74",
+    "order_index": 74,
+    "level_number": 8,
+    "slug": "challenge-count-letters",
+    "title": "Count Vowels and Consonants",
+    "difficulty": "easy",
+    "instructions": "Write `count_letters(s: str) -> dict[str, int]` returning {'vowels': count, 'consonants': count} ignoring non-alphabet characters and case.",
+    "starter_code": "def count_letters(s: str) -> dict[str, int]:\n    pass\n",
+    "solution_code": "def count_letters(s: str) -> dict[str, int]:\n    vowels = set('aeiou')\n    v_count, c_count = 0, 0\n    for ch in s.lower():\n        if 'a' <= ch <= 'z':\n            if ch in vowels:\n                v_count += 1\n            else:\n                c_count += 1\n    return {'vowels': v_count, 'consonants': c_count}\n",
+    "entry_function_name": "count_letters",
+    "test_cases": [
+      {
+        "input": [
+          "Hello World!"
+        ],
+        "expected": {
+          "vowels": 3,
+          "consonants": 7
+        },
+        "description": "Hello World",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "12345"
+        ],
+        "expected": {
+          "vowels": 0,
+          "consonants": 0
+        },
+        "description": "Numbers only",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "Python"
+        ],
+        "expected": {
+          "vowels": 1,
+          "consonants": 5
+        },
+        "description": "Python",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Check if ch.isalpha().",
+      "Check ch in 'aeiou'."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 448,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-75",
+    "order_index": 75,
+    "level_number": 8,
+    "slug": "challenge-format-currency",
+    "title": "Format Numbers as Currency",
+    "difficulty": "easy",
+    "instructions": "Write `format_currency(amount: float) -> str` formatting a float as '$1,234.56' with comma separators and exactly 2 decimal places.",
+    "starter_code": "def format_currency(amount: float) -> str:\n    pass\n",
+    "solution_code": "def format_currency(amount: float) -> str:\n    return f'${amount:,.2f}'\n",
+    "entry_function_name": "format_currency",
+    "test_cases": [
+      {
+        "input": [
+          1234.56
+        ],
+        "expected": "$1,234.56",
+        "description": "Thousands separator",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          0.0
+        ],
+        "expected": "$0.00",
+        "description": "Zero currency",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          1000000.5
+        ],
+        "expected": "$1,000,000.50",
+        "description": "Million with trailing 0",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use format specifier: f'${amount:,.2f}'."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 450,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-76",
+    "order_index": 76,
+    "level_number": 8,
+    "slug": "challenge-longest-common-prefix",
+    "title": "Longest Common Prefix",
+    "difficulty": "medium",
+    "instructions": "Write `longest_common_prefix(strs: list[str]) -> str` finding the longest common prefix string amongst a list of strings (or '' if none).",
+    "starter_code": "def longest_common_prefix(strs: list[str]) -> str:\n    pass\n",
+    "solution_code": "def longest_common_prefix(strs: list[str]) -> str:\n    if not strs:\n        return ''\n    prefix = strs[0]\n    for s in strs[1:]:\n        while not s.startswith(prefix):\n            prefix = prefix[:-1]\n            if not prefix:\n                return ''\n    return prefix\n",
+    "entry_function_name": "longest_common_prefix",
+    "test_cases": [
+      {
+        "input": [
+          [
+            "flower",
+            "flow",
+            "flight"
+          ]
+        ],
+        "expected": "fl",
+        "description": "Prefix fl",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "dog",
+            "racecar",
+            "car"
+          ]
+        ],
+        "expected": "",
+        "description": "No common prefix",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "interspecies",
+            "interstellar",
+            "interstate"
+          ]
+        ],
+        "expected": "inters",
+        "description": "Long prefix",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Shorten prefix until all words match."
+    ],
+    "xp_reward": 105,
+    "time_limit_seconds": 452,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-77",
+    "order_index": 77,
+    "level_number": 8,
+    "slug": "challenge-to-snake-case",
+    "title": "CamelCase to SnakeCase Converter",
+    "difficulty": "medium",
+    "instructions": "Write `to_snake_case(s: str) -> str` converting 'camelCase' or 'PascalCase' to 'snake_case'.",
+    "starter_code": "def to_snake_case(s: str) -> str:\n    pass\n",
+    "solution_code": "def to_snake_case(s: str) -> str:\n    res = []\n    for i, c in enumerate(s):\n        if c.isupper():\n            if i != 0 and s[i-1].isalnum() and not s[i-1].isupper():\n                res.append('_')\n            res.append(c.lower())\n        else:\n            res.append(c)\n    return ''.join(res)\n",
+    "entry_function_name": "to_snake_case",
+    "test_cases": [
+      {
+        "input": [
+          "camelCase"
+        ],
+        "expected": "camel_case",
+        "description": "camelCase",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "PascalCase"
+        ],
+        "expected": "pascal_case",
+        "description": "PascalCase",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "simple"
+        ],
+        "expected": "simple",
+        "description": "all lowercase",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Insert '_' before uppercase chars (except at start)."
+    ],
+    "xp_reward": 95,
+    "time_limit_seconds": 454,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-78",
+    "order_index": 78,
+    "level_number": 8,
+    "slug": "challenge-normalize-whitespace",
+    "title": "Normalize Whitespace",
+    "difficulty": "easy",
+    "instructions": "Write `normalize_whitespace(s: str) -> str` trimming leading/trailing spaces and collapsing internal consecutive spaces to a single space.",
+    "starter_code": "def normalize_whitespace(s: str) -> str:\n    pass\n",
+    "solution_code": "def normalize_whitespace(s: str) -> str:\n    return ' '.join(s.split())\n",
+    "entry_function_name": "normalize_whitespace",
+    "test_cases": [
+      {
+        "input": [
+          "  hello   world  "
+        ],
+        "expected": "hello world",
+        "description": "Trim and collapse",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "\tmultiple \n lines\t"
+        ],
+        "expected": "multiple lines",
+        "description": "Tabs and newlines",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          ""
+        ],
+        "expected": "",
+        "description": "Empty string",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use ' '.join(s.split())."
+    ],
+    "xp_reward": 75,
+    "time_limit_seconds": 456,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-79",
+    "order_index": 79,
+    "level_number": 8,
+    "slug": "challenge-word-wrap",
+    "title": "Word Wrap Text to Width",
+    "difficulty": "medium",
+    "instructions": "Write `word_wrap(text: str, width: int) -> list[str]` breaking text into lines of at most width characters without splitting words.",
+    "starter_code": "def word_wrap(text: str, width: int) -> list[str]:\n    pass\n",
+    "solution_code": "def word_wrap(text: str, width: int) -> list[str]:\n    words = text.split()\n    if not words:\n        return []\n    lines = []\n    cur_line = []\n    cur_len = 0\n    for w in words:\n        if cur_len + len(w) + (1 if cur_line else 0) <= width:\n            cur_line.append(w)\n            cur_len += len(w) + (1 if len(cur_line) > 1 else 0)\n        else:\n            if cur_line:\n                lines.append(' '.join(cur_line))\n            cur_line = [w]\n            cur_len = len(w)\n    if cur_line:\n        lines.append(' '.join(cur_line))\n    return lines\n",
+    "entry_function_name": "word_wrap",
+    "test_cases": [
+      {
+        "input": [
+          "The quick brown fox jumps over lazy dog",
+          15
+        ],
+        "expected": [
+          "The quick brown",
+          "fox jumps over",
+          "lazy dog"
+        ],
+        "description": "Wrap at 15",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "hello world",
+          20
+        ],
+        "expected": [
+          "hello world"
+        ],
+        "description": "Fits in single line",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "",
+          10
+        ],
+        "expected": [],
+        "description": "Empty string",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Accumulate words while line length <= width."
+    ],
+    "xp_reward": 110,
+    "time_limit_seconds": 458,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-80",
+    "order_index": 80,
+    "level_number": 8,
+    "slug": "challenge-compress-string",
+    "title": "String Compression Threshold",
+    "difficulty": "medium",
+    "instructions": "Write `compress_string(s: str) -> str` compressing repeating characters ('a2b1c5a3'). Return original s if compressed string is not shorter than s.",
+    "starter_code": "def compress_string(s: str) -> str:\n    pass\n",
+    "solution_code": "def compress_string(s: str) -> str:\n    if not s:\n        return s\n    res = []\n    cur = s[0]\n    cnt = 1\n    for ch in s[1:]:\n        if ch == cur:\n            cnt += 1\n        else:\n            res.append(f'{cur}{cnt}')\n            cur = ch\n            cnt = 1\n    res.append(f'{cur}{cnt}')\n    compressed = ''.join(res)\n    return compressed if len(compressed) < len(s) else s\n",
+    "entry_function_name": "compress_string",
+    "test_cases": [
+      {
+        "input": [
+          "aabcccccaaa"
+        ],
+        "expected": "a2b1c5a3",
+        "description": "Compression is shorter",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "abc"
+        ],
+        "expected": "abc",
+        "description": "Compression not shorter returns original",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "aaaaaa"
+        ],
+        "expected": "a6",
+        "description": "Single repeated char",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Compare len(compressed) with len(s)."
+    ],
+    "xp_reward": 105,
+    "time_limit_seconds": 460,
+    "sandbox_timeout_seconds": 3.0
+  }
+]

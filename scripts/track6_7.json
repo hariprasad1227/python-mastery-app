@@ -1,0 +1,1138 @@
+[
+  {
+    "id": "chal-51",
+    "order_index": 51,
+    "level_number": 6,
+    "slug": "challenge-safe-divide",
+    "title": "Safe Integer Division",
+    "difficulty": "easy",
+    "instructions": "Write `safe_divide(a: int, b: int)` returning a / b rounded to 2 decimals, or None if b == 0 using try-except ZeroDivisionError.",
+    "starter_code": "def safe_divide(a: int, b: int):\n    pass\n",
+    "solution_code": "def safe_divide(a: int, b: int):\n    try:\n        return round(a / b, 2)\n    except ZeroDivisionError:\n        return None\n",
+    "entry_function_name": "safe_divide",
+    "test_cases": [
+      {
+        "input": [
+          10,
+          2
+        ],
+        "expected": 5.0,
+        "description": "10 / 2 = 5",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          5,
+          0
+        ],
+        "expected": null,
+        "description": "Division by zero returns None",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          10,
+          3
+        ],
+        "expected": 3.33,
+        "description": "10 / 3 = 3.33",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use try ... except ZeroDivisionError: return None."
+    ],
+    "xp_reward": 85,
+    "time_limit_seconds": 402,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-52",
+    "order_index": 52,
+    "level_number": 6,
+    "slug": "challenge-safe-get",
+    "title": "Safe Key Lookup with Default",
+    "difficulty": "easy",
+    "instructions": "Write `safe_get(d: dict, key: str, default: any)` returning d[key] or default if KeyError occurs.",
+    "starter_code": "def safe_get(d: dict, key: str, default: any):\n    pass\n",
+    "solution_code": "def safe_get(d: dict, key: str, default: any):\n    try:\n        return d[key]\n    except KeyError:\n        return default\n",
+    "entry_function_name": "safe_get",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "name": "Alice"
+          },
+          "name",
+          "Unknown"
+        ],
+        "expected": "Alice",
+        "description": "Key exists",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          {
+            "name": "Alice"
+          },
+          "age",
+          0
+        ],
+        "expected": 0,
+        "description": "Key missing returns default",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          {},
+          "any",
+          null
+        ],
+        "expected": null,
+        "description": "Empty dict",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Catch KeyError and return default."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 404,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-53",
+    "order_index": 53,
+    "level_number": 6,
+    "slug": "challenge-safe-index",
+    "title": "Index Range Guard",
+    "difficulty": "easy",
+    "instructions": "Write `safe_index_lookup(lst: list, idx: int)` returning lst[idx] or 'Out of Bounds' if IndexError occurs.",
+    "starter_code": "def safe_index_lookup(lst: list, idx: int):\n    pass\n",
+    "solution_code": "def safe_index_lookup(lst: list, idx: int):\n    try:\n        return lst[idx]\n    except IndexError:\n        return 'Out of Bounds'\n",
+    "entry_function_name": "safe_index_lookup",
+    "test_cases": [
+      {
+        "input": [
+          [
+            10,
+            20,
+            30
+          ],
+          1
+        ],
+        "expected": 20,
+        "description": "Valid index",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            10,
+            20
+          ],
+          5
+        ],
+        "expected": "Out of Bounds",
+        "description": "Index too high",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [],
+          0
+        ],
+        "expected": "Out of Bounds",
+        "description": "Empty list lookup",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Catch IndexError."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 406,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-54",
+    "order_index": 54,
+    "level_number": 6,
+    "slug": "challenge-validate-age",
+    "title": "Age Range Validator",
+    "difficulty": "easy",
+    "instructions": "Write `validate_age(age: int) -> str` returning 'Valid' if 0 <= age <= 120, else raising ValueError and catching it to return 'Invalid Age'.",
+    "starter_code": "def validate_age(age: int) -> str:\n    pass\n",
+    "solution_code": "def validate_age(age: int) -> str:\n    try:\n        if age < 0 or age > 120:\n            raise ValueError('Age out of range')\n        return 'Valid'\n    except ValueError:\n        return 'Invalid Age'\n",
+    "entry_function_name": "validate_age",
+    "test_cases": [
+      {
+        "input": [
+          25
+        ],
+        "expected": "Valid",
+        "description": "25 is valid",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          -1
+        ],
+        "expected": "Invalid Age",
+        "description": "-1 is invalid",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          150
+        ],
+        "expected": "Invalid Age",
+        "description": "150 is invalid",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Raise and catch ValueError."
+    ],
+    "xp_reward": 85,
+    "time_limit_seconds": 408,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-55",
+    "order_index": 55,
+    "level_number": 6,
+    "slug": "challenge-parse-float-list",
+    "title": "Safe String to Float Parser",
+    "difficulty": "medium",
+    "instructions": "Write `parse_float_list(str_list: list[str]) -> list[float]` converting string tokens to floats, ignoring tokens that raise ValueError.",
+    "starter_code": "def parse_float_list(str_list: list[str]) -> list[float]:\n    pass\n",
+    "solution_code": "def parse_float_list(str_list: list[str]) -> list[float]:\n    res = []\n    for s in str_list:\n        try:\n            res.append(float(s))\n        except ValueError:\n            continue\n    return res\n",
+    "entry_function_name": "parse_float_list",
+    "test_cases": [
+      {
+        "input": [
+          [
+            "1.5",
+            "abc",
+            "3.0",
+            "xyz",
+            "4"
+          ]
+        ],
+        "expected": [
+          1.5,
+          3.0,
+          4.0
+        ],
+        "description": "Mix of valid/invalid",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "bad",
+            "data"
+          ]
+        ],
+        "expected": [],
+        "description": "All invalid",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "-2.5",
+            "0.0"
+          ]
+        ],
+        "expected": [
+          -2.5,
+          0.0
+        ],
+        "description": "Negatives and zeroes",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use try ... except ValueError in a loop."
+    ],
+    "xp_reward": 90,
+    "time_limit_seconds": 410,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-56",
+    "order_index": 56,
+    "level_number": 6,
+    "slug": "challenge-pop-safe",
+    "title": "Safe Stack Pop Handler",
+    "difficulty": "easy",
+    "instructions": "Write `pop_safe(items: list)` returning items.pop() or None if items is empty without crashing.",
+    "starter_code": "def pop_safe(items: list):\n    pass\n",
+    "solution_code": "def pop_safe(items: list):\n    try:\n        return items.pop()\n    except IndexError:\n        return None\n",
+    "entry_function_name": "pop_safe",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": 3,
+        "description": "Non-empty pop",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          []
+        ],
+        "expected": null,
+        "description": "Empty pop returns None",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            "solo"
+          ]
+        ],
+        "expected": "solo",
+        "description": "Single element pop",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Catch IndexError on pop()."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 412,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-57",
+    "order_index": 57,
+    "level_number": 6,
+    "slug": "challenge-assert-positive",
+    "title": "All-Positive Array Assertion",
+    "difficulty": "easy",
+    "instructions": "Write `assert_positive(nums: list[int]) -> bool` returning True if every number > 0, False if any <= 0.",
+    "starter_code": "def assert_positive(nums: list[int]) -> bool:\n    pass\n",
+    "solution_code": "def assert_positive(nums: list[int]) -> bool:\n    return all(x > 0 for x in nums)\n",
+    "entry_function_name": "assert_positive",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ],
+        "expected": true,
+        "description": "All positive",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            -2,
+            3
+          ]
+        ],
+        "expected": false,
+        "description": "Contains -2",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            0,
+            5
+          ]
+        ],
+        "expected": false,
+        "description": "0 is not positive",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use all(x > 0 for x in nums)."
+    ],
+    "xp_reward": 75,
+    "time_limit_seconds": 414,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-58",
+    "order_index": 58,
+    "level_number": 6,
+    "slug": "challenge-nested-get",
+    "title": "Safe Nested Dictionary Access",
+    "difficulty": "medium",
+    "instructions": "Write `nested_get(data: dict, keys: list[str])` traversing data along keys, returning None if any key is missing or not a dict.",
+    "starter_code": "def nested_get(data: dict, keys: list[str]):\n    pass\n",
+    "solution_code": "def nested_get(data: dict, keys: list[str]):\n    cur = data\n    for k in keys:\n        if not isinstance(cur, dict) or k not in cur:\n            return None\n        cur = cur[k]\n    return cur\n",
+    "entry_function_name": "nested_get",
+    "test_cases": [
+      {
+        "input": [
+          {
+            "user": {
+              "profile": {
+                "city": "Paris"
+              }
+            }
+          },
+          [
+            "user",
+            "profile",
+            "city"
+          ]
+        ],
+        "expected": "Paris",
+        "description": "3-level access",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          {
+            "user": {
+              "name": "Bob"
+            }
+          },
+          [
+            "user",
+            "age"
+          ]
+        ],
+        "expected": null,
+        "description": "Missing inner key",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          {},
+          [
+            "any"
+          ]
+        ],
+        "expected": null,
+        "description": "Empty root",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Traverse step by step.",
+      "Verify isinstance(cur, dict)."
+    ],
+    "xp_reward": 95,
+    "time_limit_seconds": 416,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-59",
+    "order_index": 59,
+    "level_number": 6,
+    "slug": "challenge-safe-parse-json",
+    "title": "Safe JSON String Parsing",
+    "difficulty": "easy",
+    "instructions": "Write `safe_parse_json(s: str) -> dict` parsing a JSON string using json.loads, returning {} if json.JSONDecodeError occurs.",
+    "starter_code": "def safe_parse_json(s: str) -> dict:\n    pass\n",
+    "solution_code": "def safe_parse_json(s: str) -> dict:\n    import json\n    try:\n        return json.loads(s)\n    except (json.JSONDecodeError, TypeError):\n        return {}\n",
+    "entry_function_name": "safe_parse_json",
+    "test_cases": [
+      {
+        "input": [
+          "{\"a\": 1, \"b\": 2}"
+        ],
+        "expected": {
+          "a": 1,
+          "b": 2
+        },
+        "description": "Valid JSON",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "not a json string"
+        ],
+        "expected": {},
+        "description": "Invalid JSON returns {}",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "{\"key\": [1, 2]}"
+        ],
+        "expected": {
+          "key": [
+            1,
+            2
+          ]
+        },
+        "description": "Nested list JSON",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use try json.loads(s) except (json.JSONDecodeError, TypeError): return {}."
+    ],
+    "xp_reward": 85,
+    "time_limit_seconds": 418,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-60",
+    "order_index": 60,
+    "level_number": 6,
+    "slug": "challenge-catch-type-error",
+    "title": "Type Incompatibility Detector",
+    "difficulty": "easy",
+    "instructions": "Write `catch_type_error(a: any, b: any) -> bool` attempting `a + b` returning True if TypeError occurs, False if succeeds.",
+    "starter_code": "def catch_type_error(a: any, b: any) -> bool:\n    pass\n",
+    "solution_code": "def catch_type_error(a: any, b: any) -> bool:\n    try:\n        _ = a + b\n        return False\n    except TypeError:\n        return True\n",
+    "entry_function_name": "catch_type_error",
+    "test_cases": [
+      {
+        "input": [
+          5,
+          "10"
+        ],
+        "expected": true,
+        "description": "int + str raises TypeError",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          5,
+          10
+        ],
+        "expected": false,
+        "description": "int + int succeeds",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "hello",
+          "world"
+        ],
+        "expected": false,
+        "description": "str + str succeeds",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Try a + b and catch TypeError."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 420,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-61",
+    "order_index": 61,
+    "level_number": 7,
+    "slug": "challenge-two-sum",
+    "title": "Two Sum Indices",
+    "difficulty": "medium",
+    "instructions": "Write `two_sum(nums: list[int], target: int) -> list[int]` returning 0-indexed positions [i, j] of two numbers summing to target.",
+    "starter_code": "def two_sum(nums: list[int], target: int) -> list[int]:\n    pass\n",
+    "solution_code": "def two_sum(nums: list[int], target: int) -> list[int]:\n    seen = {}\n    for i, x in enumerate(nums):\n        diff = target - x\n        if diff in seen:\n            return [seen[diff], i]\n        seen[x] = i\n    return []\n",
+    "entry_function_name": "two_sum",
+    "test_cases": [
+      {
+        "input": [
+          [
+            2,
+            7,
+            11,
+            15
+          ],
+          9
+        ],
+        "expected": [
+          0,
+          1
+        ],
+        "description": "2 + 7 = 9",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            3,
+            2,
+            4
+          ],
+          6
+        ],
+        "expected": [
+          1,
+          2
+        ],
+        "description": "2 + 4 = 6",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            3,
+            3
+          ],
+          6
+        ],
+        "expected": [
+          0,
+          1
+        ],
+        "description": "3 + 3 = 6",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use a hash map to store value -> index.",
+      "Lookup target - x."
+    ],
+    "xp_reward": 100,
+    "time_limit_seconds": 422,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-62",
+    "order_index": 62,
+    "level_number": 7,
+    "slug": "challenge-binary-search",
+    "title": "Binary Search Algorithm",
+    "difficulty": "medium",
+    "instructions": "Write `binary_search(arr: list[int], target: int) -> int` returning the index of target in sorted arr, or -1 if not found in O(log n).",
+    "starter_code": "def binary_search(arr: list[int], target: int) -> int:\n    pass\n",
+    "solution_code": "def binary_search(arr: list[int], target: int) -> int:\n    lo, hi = 0, len(arr) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1\n",
+    "entry_function_name": "binary_search",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11
+          ],
+          7
+        ],
+        "expected": 3,
+        "description": "Search 7",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            3,
+            5
+          ],
+          4
+        ],
+        "expected": -1,
+        "description": "Missing element",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            10,
+            20,
+            30
+          ],
+          10
+        ],
+        "expected": 0,
+        "description": "First element",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Maintain lo and hi pointers.",
+      "Check middle element each step."
+    ],
+    "xp_reward": 100,
+    "time_limit_seconds": 424,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-63",
+    "order_index": 63,
+    "level_number": 7,
+    "slug": "challenge-max-sub-array",
+    "title": "Maximum Subarray Sum (Kadane's)",
+    "difficulty": "medium",
+    "instructions": "Write `max_sub_array(nums: list[int]) -> int` returning the largest sum of any contiguous subarray.",
+    "starter_code": "def max_sub_array(nums: list[int]) -> int:\n    pass\n",
+    "solution_code": "def max_sub_array(nums: list[int]) -> int:\n    max_so_far = nums[0]\n    cur_max = nums[0]\n    for x in nums[1:]:\n        cur_max = max(x, cur_max + x)\n        max_so_far = max(max_so_far, cur_max)\n    return max_so_far\n",
+    "entry_function_name": "max_sub_array",
+    "test_cases": [
+      {
+        "input": [
+          [
+            -2,
+            1,
+            -3,
+            4,
+            -1,
+            2,
+            1,
+            -5,
+            4
+          ]
+        ],
+        "expected": 6,
+        "description": "[4,-1,2,1] has sum 6",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            1
+          ]
+        ],
+        "expected": 1,
+        "description": "Single element",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            5,
+            4,
+            -1,
+            7,
+            8
+          ]
+        ],
+        "expected": 23,
+        "description": "All positive sum",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use Kadane's Algorithm: cur_max = max(x, cur_max + x)."
+    ],
+    "xp_reward": 110,
+    "time_limit_seconds": 426,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-64",
+    "order_index": 64,
+    "level_number": 7,
+    "slug": "challenge-merge-sorted",
+    "title": "Merge Two Sorted Lists",
+    "difficulty": "medium",
+    "instructions": "Write `merge_sorted(a: list[int], b: list[int]) -> list[int]` merging two sorted lists into one sorted list in O(n+m).",
+    "starter_code": "def merge_sorted(a: list[int], b: list[int]) -> list[int]:\n    pass\n",
+    "solution_code": "def merge_sorted(a: list[int], b: list[int]) -> list[int]:\n    i, j = 0, 0\n    res = []\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            res.append(a[i])\n            i += 1\n        else:\n            res.append(b[j])\n            j += 1\n    res.extend(a[i:])\n    res.extend(b[j:])\n    return res\n",
+    "entry_function_name": "merge_sorted",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            3,
+            5
+          ],
+          [
+            2,
+            4,
+            6
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "description": "Equal length merge",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [],
+          [
+            1,
+            2
+          ]
+        ],
+        "expected": [
+          1,
+          2
+        ],
+        "description": "One empty list",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            5,
+            9
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          5,
+          9
+        ],
+        "description": "Unequal lengths",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use two pointers i and j.",
+      "Append smaller element and advance pointer."
+    ],
+    "xp_reward": 100,
+    "time_limit_seconds": 428,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-65",
+    "order_index": 65,
+    "level_number": 7,
+    "slug": "challenge-valid-parentheses",
+    "title": "Valid Balanced Parentheses",
+    "difficulty": "medium",
+    "instructions": "Write `is_valid_parentheses(s: str) -> bool` checking if bracket pairs '()', '[]', '{}' are correctly matched and closed in order.",
+    "starter_code": "def is_valid_parentheses(s: str) -> bool:\n    pass\n",
+    "solution_code": "def is_valid_parentheses(s: str) -> bool:\n    stack = []\n    mapping = {')': '(', ']': '[', '}': '{'}\n    for c in s:\n        if c in '([{':\n            stack.append(c)\n        elif c in mapping:\n            if not stack or stack[-1] != mapping[c]:\n                return False\n            stack.pop()\n    return len(stack) == 0\n",
+    "entry_function_name": "is_valid_parentheses",
+    "test_cases": [
+      {
+        "input": [
+          "()[]{}"
+        ],
+        "expected": true,
+        "description": "Multiple valid pairs",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "(]"
+        ],
+        "expected": false,
+        "description": "Mismatched pair",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "([{}])"
+        ],
+        "expected": true,
+        "description": "Nested brackets",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use a stack for open brackets.",
+      "Pop and match when closing bracket seen."
+    ],
+    "xp_reward": 110,
+    "time_limit_seconds": 430,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-66",
+    "order_index": 66,
+    "level_number": 7,
+    "slug": "challenge-rotate-array",
+    "title": "Rotate Array by K Steps",
+    "difficulty": "medium",
+    "instructions": "Write `rotate_array(nums: list[int], k: int) -> list[int]` rotating array elements to the right by k steps.",
+    "starter_code": "def rotate_array(nums: list[int], k: int) -> list[int]:\n    pass\n",
+    "solution_code": "def rotate_array(nums: list[int], k: int) -> list[int]:\n    if not nums:\n        return []\n    k = k % len(nums)\n    return nums[-k:] + nums[:-k]\n",
+    "entry_function_name": "rotate_array",
+    "test_cases": [
+      {
+        "input": [
+          [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          3
+        ],
+        "expected": [
+          5,
+          6,
+          7,
+          1,
+          2,
+          3,
+          4
+        ],
+        "description": "Rotate right by 3",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            -1,
+            -100,
+            3,
+            99
+          ],
+          2
+        ],
+        "expected": [
+          3,
+          99,
+          -1,
+          -100
+        ],
+        "description": "Rotate right by 2",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            2
+          ],
+          0
+        ],
+        "expected": [
+          1,
+          2
+        ],
+        "description": "Rotate by 0",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Calculate effective k = k % len(nums).",
+      "Slice nums[-k:] + nums[:-k]."
+    ],
+    "xp_reward": 95,
+    "time_limit_seconds": 432,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-67",
+    "order_index": 67,
+    "level_number": 7,
+    "slug": "challenge-run-length-encode",
+    "title": "Run-Length String Encoding",
+    "difficulty": "medium",
+    "instructions": "Write `run_length_encode(text: str) -> str` compressing consecutive repeating characters e.g. 'AAABBC' -> 'A3B2C1' (empty string -> '').",
+    "starter_code": "def run_length_encode(text: str) -> str:\n    pass\n",
+    "solution_code": "def run_length_encode(text: str) -> str:\n    if not text:\n        return ''\n    res = []\n    cur_ch = text[0]\n    count = 1\n    for ch in text[1:]:\n        if ch == cur_ch:\n            count += 1\n        else:\n            res.append(f'{cur_ch}{count}')\n            cur_ch = ch\n            count = 1\n    res.append(f'{cur_ch}{count}')\n    return ''.join(res)\n",
+    "entry_function_name": "run_length_encode",
+    "test_cases": [
+      {
+        "input": [
+          "AAABBC"
+        ],
+        "expected": "A3B2C1",
+        "description": "AAABBC",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "A"
+        ],
+        "expected": "A1",
+        "description": "Single char",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          "WWWWWW"
+        ],
+        "expected": "W6",
+        "description": "Repeated 6 times",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Track current character and count.",
+      "Append when character changes."
+    ],
+    "xp_reward": 105,
+    "time_limit_seconds": 434,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-68",
+    "order_index": 68,
+    "level_number": 7,
+    "slug": "challenge-int-sqrt",
+    "title": "Integer Square Root Floor",
+    "difficulty": "easy",
+    "instructions": "Write `int_sqrt(n: int) -> int` returning floor(sqrt(n)) without importing math.",
+    "starter_code": "def int_sqrt(n: int) -> int:\n    pass\n",
+    "solution_code": "def int_sqrt(n: int) -> int:\n    if n < 0:\n        return 0\n    return int(n ** 0.5)\n",
+    "entry_function_name": "int_sqrt",
+    "test_cases": [
+      {
+        "input": [
+          16
+        ],
+        "expected": 4,
+        "description": "sqrt(16) = 4",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          8
+        ],
+        "expected": 2,
+        "description": "sqrt(8) floor = 2",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          0
+        ],
+        "expected": 0,
+        "description": "sqrt(0) = 0",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Use int(n ** 0.5)."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 436,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-69",
+    "order_index": 69,
+    "level_number": 7,
+    "slug": "challenge-move-zeroes",
+    "title": "Move Zeroes to End",
+    "difficulty": "easy",
+    "instructions": "Write `move_zeroes(nums: list[int]) -> list[int]` moving all 0s to the end while maintaining relative order of non-zero elements.",
+    "starter_code": "def move_zeroes(nums: list[int]) -> list[int]:\n    pass\n",
+    "solution_code": "def move_zeroes(nums: list[int]) -> list[int]:\n    non_zeros = [x for x in nums if x != 0]\n    zeros = [0] * (len(nums) - len(non_zeros))\n    return non_zeros + zeros\n",
+    "entry_function_name": "move_zeroes",
+    "test_cases": [
+      {
+        "input": [
+          [
+            0,
+            1,
+            0,
+            3,
+            12
+          ]
+        ],
+        "expected": [
+          1,
+          3,
+          12,
+          0,
+          0
+        ],
+        "description": "Two zeroes moved",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            0
+          ]
+        ],
+        "expected": [
+          0
+        ],
+        "description": "Single zero",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ],
+        "description": "No zeroes",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Collect non-zeros and append zeros count."
+    ],
+    "xp_reward": 80,
+    "time_limit_seconds": 438,
+    "sandbox_timeout_seconds": 3.0
+  },
+  {
+    "id": "chal-70",
+    "order_index": 70,
+    "level_number": 7,
+    "slug": "challenge-climb-stairs",
+    "title": "Climbing Stairs Possibilities",
+    "difficulty": "medium",
+    "instructions": "Write `climb_stairs(n: int) -> int` returning number of distinct ways to climb n steps taking 1 or 2 steps at a time (e.g. n=1 -> 1, n=2 -> 2, n=3 -> 3).",
+    "starter_code": "def climb_stairs(n: int) -> int:\n    pass\n",
+    "solution_code": "def climb_stairs(n: int) -> int:\n    if n <= 2:\n        return max(0, n)\n    a, b = 1, 2\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    return b\n",
+    "entry_function_name": "climb_stairs",
+    "test_cases": [
+      {
+        "input": [
+          2
+        ],
+        "expected": 2,
+        "description": "2 steps = 2 ways",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          3
+        ],
+        "expected": 3,
+        "description": "3 steps = 3 ways",
+        "is_hidden": false
+      },
+      {
+        "input": [
+          5
+        ],
+        "expected": 8,
+        "description": "5 steps = 8 ways",
+        "is_hidden": true
+      }
+    ],
+    "hints": [
+      "Fibonacci relation: ways(n) = ways(n-1) + ways(n-2)."
+    ],
+    "xp_reward": 100,
+    "time_limit_seconds": 440,
+    "sandbox_timeout_seconds": 3.0
+  }
+]
